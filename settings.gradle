@@ -1,1 +1,1 @@
-include ':core', ':jodatime', ':jsr310', ':sample', ':threetenabp'
+include ':core', ':core-testing', ':jodatime', ':jsr310', ':sample', ':threetenabp'

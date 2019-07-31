@@ -568,7 +568,7 @@ class WeekView<T> @JvmOverloads constructor(
         }
 
     /**
-     * Returns the default text color of an [EventChip].
+     * Returns the default background color of an [EventChip].
      */
     var defaultEventColor: Int
         get() = configWrapper.defaultEventColor
