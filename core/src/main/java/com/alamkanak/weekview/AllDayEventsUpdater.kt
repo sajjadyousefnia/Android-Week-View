@@ -8,7 +8,7 @@ import android.text.TextUtils
 import android.text.TextUtils.TruncateAt.END
 import android.text.style.StyleSpan
 
-internal class AllDayEventsUpdater<T>(
+internal class AllDayEventsUpdater<T : Any>(
     private val view: WeekView<T>,
     private val config: WeekViewConfigWrapper,
     private val cache: WeekViewCache<T>,
