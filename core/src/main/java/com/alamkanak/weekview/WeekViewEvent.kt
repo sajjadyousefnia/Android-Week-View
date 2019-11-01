@@ -22,13 +22,13 @@ data class WeekViewEvent<T> internal constructor(
     var data: T? = null
 ) : WeekViewDisplayable<T>, Comparable<WeekViewEvent<T>> {
 
-    val title: String?
+    val title: CharSequence?
         get() = (titleResource as? TextResource.Value)?.text
 
     val titleResId: Int?
         get() = (titleResource as? TextResource.Id)?.resId
 
-    val location: String?
+    val location: CharSequence?
         get() = (locationResource as? TextResource.Value)?.text
 
     val locationResId: Int?
@@ -43,7 +43,7 @@ data class WeekViewEvent<T> internal constructor(
     internal val isMultiDay: Boolean
         get() = isSameDay(endTime).not()
 
-    internal fun isSameDay(other: Calendar): Boolean {
+    private fun isSameDay(other: Calendar): Boolean {
         return startTime.isSameDate(other)
     }
 
@@ -119,7 +119,7 @@ data class WeekViewEvent<T> internal constructor(
     }
 
     internal sealed class TextResource {
-        data class Value(val text: String) : TextResource()
+        data class Value(val text: CharSequence) : TextResource()
         data class Id(@StringRes val resId: Int) : TextResource()
     }
 
@@ -222,7 +222,7 @@ data class WeekViewEvent<T> internal constructor(
             return this
         }
 
-        fun setTitle(title: String): Builder<T> {
+        fun setTitle(title: CharSequence): Builder<T> {
             event.titleResource = TextResource.Value(title)
             return this
         }
@@ -242,7 +242,7 @@ data class WeekViewEvent<T> internal constructor(
             return this
         }
 
-        fun setLocation(location: String): Builder<T> {
+        fun setLocation(location: CharSequence): Builder<T> {
             event.locationResource = TextResource.Value(location)
             return this
         }
