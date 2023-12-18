@@ -89,7 +89,8 @@ internal class TimeColumnRenderer(
         val textLayouts = mutableListOf<StaticLayout>()
 
         for (hour in displayedHours) {
-            val textLayout = timeFormatter(hour).toTextLayout(timeColumnTextPaint, width = Int.MAX_VALUE)
+            val textLayout =
+                timeFormatter(hour).toTextLayout(timeColumnTextPaint, width = Int.MAX_VALUE)
             textLayouts += textLayout
             timeLabelLayouts.put(hour, textLayout)
         }

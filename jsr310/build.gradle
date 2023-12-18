@@ -19,6 +19,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         coreLibraryDesugaringEnabled true
     }
+    namespace 'com.alamkanak.weekview.jsr310'
 }
 
 dependencies {

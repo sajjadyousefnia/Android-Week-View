@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 34
     defaultConfig {
         applicationId "com.alamkanak.weekview"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -16,11 +16,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         coreLibraryDesugaringEnabled true
     }
-    lintOptions {
-        abortOnError false
-    }
     buildFeatures {
         viewBinding true
+    }
+    namespace 'com.alamkanak.weekview.sample'
+    lint {
+        abortOnError false
     }
 }
 
@@ -35,9 +36,9 @@ dependencies {
     implementation libraries.appCompat
     implementation libraries.emoji
 
-    implementation 'androidx.activity:activity-ktx:1.4.0'
-    implementation 'androidx.fragment:fragment-ktx:1.4.1'
+    implementation 'androidx.activity:activity-ktx:1.8.2'
+    implementation 'androidx.fragment:fragment-ktx:1.5.6'
 
-    implementation 'com.google.android.material:material:1.6.0'
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }

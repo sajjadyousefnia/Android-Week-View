@@ -47,7 +47,8 @@ internal class ViewState {
     // Drawing context
     private var startPixel: Float = 0f
     val startPixels: MutableList<Float> = mutableListOf()
-    val dateRange: MutableList<Calendar> = createDateRange(firstVisibleDate).validate(this).toMutableList()
+    val dateRange: MutableList<Calendar> =
+        createDateRange(firstVisibleDate).validate(this).toMutableList()
     val dateRangeWithStartPixels: MutableList<Pair<Calendar, Float>> = mutableListOf()
 
     // Drag & drop
