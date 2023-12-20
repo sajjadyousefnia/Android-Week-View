@@ -1,4 +1,5 @@
 @file:JvmName("ToolbarUtils")
+
 package com.alamkanak.weekview.sample.util
 
 import android.app.Activity
@@ -32,6 +33,7 @@ fun Toolbar.setupWithWeekView(weekView: WeekView) {
                 weekView.scrollToDateTime(dateTime = LocalDateTime.now())
                 true
             }
+
             else -> {
                 val viewType = item.mapToWeekViewType()
                 if (viewType != currentViewType) {

@@ -332,9 +332,14 @@ internal class ViewState {
             currentOrigin.x += dayWidth * difference * factor
         }
 
-        currentOrigin.x = currentOrigin.x.coerceIn(minimumValue = minX, maximumValue = maxX)
+        currentOrigin.x =
+            currentOrigin.x.coerceIn(
+                minimumValue = minOf(minX, maxX),
+                maximumValue = maxOf(minX, maxX)
+            )
         navigationListener.onHorizontalScrollingFinished()
     }
+
 
     private fun renderCurrentTime() {
         val desired = now()

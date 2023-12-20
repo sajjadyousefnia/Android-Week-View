@@ -22,8 +22,8 @@ internal class Navigator(
         viewState.currentOrigin.x -= distance
 
         viewState.currentOrigin.x = viewState.currentOrigin.x.coerceIn(
-            minimumValue = if (viewState.isLtr) viewState.minX else viewState.maxX,
-            maximumValue = if (viewState.isLtr) viewState.maxX else viewState.minX
+            minimumValue = minOf(viewState.maxX, viewState.minX),
+            maximumValue = maxOf(viewState.maxX, viewState.minX)
         )
         listener.onHorizontalScrollPositionChanged()
     }
@@ -31,8 +31,8 @@ internal class Navigator(
     fun scrollHorizontallyTo(date: Calendar, onFinished: () -> Unit = {}) {
         val destinationOffset = viewState.getXOriginForDate(date)
         val adjustedDestinationOffset = destinationOffset.coerceIn(
-            minimumValue = if (viewState.isLtr) viewState.minX else viewState.maxX,
-            maximumValue = if (viewState.isLtr) viewState.maxX else viewState.minX
+            minimumValue = minOf(viewState.maxX, viewState.minX),
+            maximumValue = maxOf(viewState.maxX, viewState.minX)
         )
         scrollHorizontallyTo(offset = adjustedDestinationOffset, onFinished = onFinished)
     }
@@ -64,7 +64,8 @@ internal class Navigator(
             return
         }
 
-        val maxY = viewState.dayHeight - (viewState.headerHeight + viewState.calendarGridBounds.height())
+        val maxY =
+            viewState.dayHeight - (viewState.headerHeight + viewState.calendarGridBounds.height())
 
         if (currentVerticalOffset == maxY && isScrollingDown) {
             // Trying to scroll down when already at the bottom

@@ -16,7 +16,8 @@ internal class CalendarRenderer(
 ) : Renderer {
 
     private val singleEventLabels = ArrayMap<String, StaticLayout>()
-    private val eventsUpdater = SingleEventsUpdater(viewState, eventChipsCacheProvider, singleEventLabels)
+    private val eventsUpdater =
+        SingleEventsUpdater(viewState, eventChipsCacheProvider, singleEventLabels)
 
     // Be careful when changing the order of the drawers, as that might cause
     // views to incorrectly draw over each other
@@ -147,7 +148,16 @@ private class DayBackgroundDrawer(
         val endX = startPixel + viewState.dayWidth
 
         when {
-            date.isToday -> drawPastAndFutureRect(actualStartPixel, startY, endX, pastPaint, futurePaint, height, canvas)
+            date.isToday -> drawPastAndFutureRect(
+                actualStartPixel,
+                startY,
+                endX,
+                pastPaint,
+                futurePaint,
+                height,
+                canvas
+            )
+
             date.isBeforeToday -> canvas.drawRect(actualStartPixel, startY, endX, height, pastPaint)
             else -> canvas.drawRect(actualStartPixel, startY, endX, height, futurePaint)
         }

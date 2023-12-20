@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
+import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import android.util.SparseArray
@@ -127,7 +128,23 @@ private class HeaderUpdater(
             date.isWeekend -> viewState.weekendHeaderTextPaint
             else -> viewState.headerTextPaint
         }
-        return dayLabel.toTextLayout(textPaint = textPaint, width = viewState.dayWidth.toInt())
+        val dayLabelDirection =
+            when (viewState.isLtr) {
+                true -> {
+                    Layout.Alignment.ALIGN_NORMAL
+                }
+
+                false -> {
+                    Layout.Alignment.ALIGN_CENTER
+                }
+            }
+
+
+        return dayLabel.toTextLayout(
+            textPaint = textPaint,
+            width = viewState.dayWidth.toInt(),
+            alignment = dayLabelDirection
+        )
     }
 
     private fun <E> SparseArray<E>.hasKey(key: Int): Boolean = indexOfKey(key) >= 0
@@ -197,7 +214,8 @@ private class AllDayEventsUpdater(
         get() {
             val didScrollHorizontally = previousHorizontalOrigin != viewState.currentOrigin.x
             val dateRange = viewState.dateRange
-            val eventChips = eventChipsCacheProvider()?.allDayEventChipsInDateRange(dateRange).orEmpty()
+            val eventChips =
+                eventChipsCacheProvider()?.allDayEventChipsInDateRange(dateRange).orEmpty()
             val containsNewChips = eventChips.any { it.bounds.isEmpty }
             return didScrollHorizontally || containsNewChips
         }
@@ -331,9 +349,9 @@ internal class AllDayEventsDrawer(
         }
 
         val y = priorEventChip.bounds.bottom +
-            viewState.eventMarginVertical +
-            viewState.eventPaddingVertical +
-            textPaint.textSize
+                viewState.eventMarginVertical +
+                viewState.eventPaddingVertical +
+                textPaint.textSize
 
         drawText(text, x, y, textPaint)
     }
