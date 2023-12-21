@@ -253,6 +253,11 @@ internal object ViewStateFactory {
                 a.getBoolean(R.styleable.WeekView_horizontalScrollingEnabled, true)
         }
 
+        viewState.apply {
+            zoomingEnabled = a.getBoolean(R.styleable.WeekView_zoomingEnabled, true)
+        }
+
+
         a.recycle()
 
         return viewState

@@ -108,6 +108,7 @@
 
         <!-- Scrolling -->
         <attr name="horizontalScrollingEnabled" format="boolean" />
+        <attr name="zoomingEnabled" format="boolean" />
 
         <!-- Font -->
         <attr name="fontFamily" format="string" />

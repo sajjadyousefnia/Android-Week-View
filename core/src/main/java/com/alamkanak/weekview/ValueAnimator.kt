@@ -30,7 +30,10 @@ internal class ValueAnimator {
             }
 
             addListener(object : Animator.AnimatorListener {
-                override fun onAnimationEnd(animator: Animator) { onEnd() }
+                override fun onAnimationEnd(animator: Animator) {
+                    onEnd()
+                }
+
                 override fun onAnimationStart(animator: Animator) = Unit
                 override fun onAnimationCancel(animator: Animator) = Unit
                 override fun onAnimationRepeat(animator: Animator) = Unit

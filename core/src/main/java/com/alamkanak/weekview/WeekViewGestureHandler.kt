@@ -68,6 +68,7 @@ internal class WeekViewGestureHandler(
             scrollDirection.isHorizontal -> {
                 navigator.scrollHorizontallyBy(distance = distanceX)
             }
+
             scrollDirection.isVertical -> {
                 navigator.scrollVerticallyBy(distance = distanceY)
             }
@@ -193,7 +194,7 @@ internal class WeekViewGestureHandler(
     }
 
     fun onTouchEvent(event: MotionEvent): Boolean {
-        if (!scrollDirection.isHorizontal && flingDirection == None) {
+        if (!scrollDirection.isHorizontal && flingDirection == None && viewState.zoomingEnabled) {
             scaleDetector.onTouchEvent(event)
         }
 
@@ -250,6 +251,7 @@ private fun Calendar.performFling(direction: Direction, viewState: ViewState): C
                 this.minusDays(daysDelta)
             }
         }
+
         Right -> {
             if (viewState.isLtr) {
                 this.minusDays(daysDelta)
@@ -257,6 +259,7 @@ private fun Calendar.performFling(direction: Direction, viewState: ViewState): C
                 this.plusDays(daysDelta)
             }
         }
+
         else -> throw IllegalStateException()
     }
 }

@@ -90,6 +90,7 @@ internal class ViewState {
     var showHeaderBottomShadow: Boolean = false
 
     var horizontalScrollingEnabled: Boolean = false
+    var zoomingEnabled: Boolean = true
 
     var minHour: Int = 0
     var maxHour: Int = 24

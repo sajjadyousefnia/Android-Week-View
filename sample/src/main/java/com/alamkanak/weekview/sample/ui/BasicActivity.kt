@@ -87,7 +87,11 @@ private class BasicActivityWeekViewAdapter(
         context.showToast("Empty view clicked at ${defaultDateTimeFormatter.format(time)}")
     }
 
-    override fun onDragAndDropFinished(data: CalendarEntity, newStartTime: LocalDateTime, newEndTime: LocalDateTime) {
+    override fun onDragAndDropFinished(
+        data: CalendarEntity,
+        newStartTime: LocalDateTime,
+        newEndTime: LocalDateTime
+    ) {
         if (data is CalendarEntity.Event) {
             dragHandler(data.id, newStartTime, newEndTime)
         }
@@ -102,7 +106,10 @@ private class BasicActivityWeekViewAdapter(
     }
 
     override fun onVerticalScrollPositionChanged(currentOffset: Float, distance: Float) {
-        Log.d("BasicActivity", "Scrolling vertically (distance: ${distance.toInt()}, current offset ${currentOffset.toInt()})")
+        Log.d(
+            "BasicActivity",
+            "Scrolling vertically (distance: ${distance.toInt()}, current offset ${currentOffset.toInt()})"
+        )
     }
 
     override fun onVerticalScrollFinished(currentOffset: Float) {
