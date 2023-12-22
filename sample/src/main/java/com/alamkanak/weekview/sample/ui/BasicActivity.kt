@@ -45,8 +45,8 @@ class BasicActivity : AppCompatActivity() {
             dragHandler = viewModel::handleDrag,
             loadMoreHandler = viewModel::fetchEvents,
         )
-        binding.weekView.adapter = adapter
 
+        binding.weekView.adapter = adapter
         binding.weekView.setDateFormatter { date: LocalDate ->
             val weekdayLabel = weekdayFormatter.format(date)
             val dateLabel = dateFormatter.format(date)

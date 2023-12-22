@@ -180,6 +180,18 @@ internal object ViewStateFactory {
         }
 
         viewState.apply {
+            timeColumnMarginLeft =
+                a.getDimensionPixelSize(R.styleable.WeekView_timeColumnMarginLeft, 0)
+            timeColumnMarginRight =
+                a.getDimensionPixelSize(R.styleable.WeekView_timeColumnMarginRight, 0)
+            timeColumnMarginLeftRtl =
+                a.getDimensionPixelSize(R.styleable.WeekView_timeColumnMarginLeftRtL, 0)
+            timeColumnMarginRightRtl =
+                a.getDimensionPixelSize(R.styleable.WeekView_timeColumnMarginRightRtl, 0)
+
+        }
+
+        viewState.apply {
             showTimeColumnSeparator =
                 a.getBoolean(R.styleable.WeekView_showTimeColumnSeparator, false)
         }
@@ -187,6 +199,10 @@ internal object ViewStateFactory {
         viewState.apply {
             minHour = a.getInt(R.styleable.WeekView_minHour, 0)
             maxHour = a.getInt(R.styleable.WeekView_maxHour, 24)
+        }
+        viewState.apply {
+            showHalfHours = a.getBoolean(R.styleable.WeekView_showHalfHours, false)
+            showHalfHours = a.getBoolean(R.styleable.WeekView_showQuarterHours, false)
         }
 
         viewState.apply {

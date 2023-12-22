@@ -191,7 +191,11 @@ private class BackgroundGridDrawer(
             if (viewState.showHourSeparators) {
                 drawHourLines()
             }
+            if (viewState.showHalfHourSeparator) {
+            }
+            if (viewState.showQuarterHourSeparator) {
 
+            }
             if (viewState.showDaySeparators) {
                 drawDaySeparators()
             }

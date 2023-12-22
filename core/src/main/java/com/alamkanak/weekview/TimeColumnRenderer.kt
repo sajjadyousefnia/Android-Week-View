@@ -10,6 +10,9 @@ internal class TimeColumnRenderer(
 ) : Renderer, TimeFormatterDependent {
 
     private val timeLabelLayouts = SparseArray<StaticLayout>()
+    private val quarterTimeLabelLayouts = SparseArray<StaticLayout>()
+    private val halfTimeLabelLayouts = SparseArray<StaticLayout>()
+
 
     init {
         updateTimeLabels()
@@ -26,6 +29,8 @@ internal class TimeColumnRenderer(
     override fun render(canvas: Canvas) = with(viewState) {
         val bottom = viewState.viewHeight.toFloat()
         val bounds = viewState.timeColumnBounds
+        val extraInitialPadding = viewWidth
+
 
         // Draw background
         canvas.drawRect(bounds, timeColumnBackgroundPaint)
@@ -49,16 +54,21 @@ internal class TimeColumnRenderer(
             }
 
             val label = timeLabelLayouts[hour]
-            val x = if (viewState.isLtr) {
-                bounds.right - viewState.timeColumnPadding
-            } else {
-                bounds.left + viewState.timeColumnPadding
-            }
+            var x =
+                if (viewState.isLtr) {
+                    bounds.right - viewState.timeColumnPadding - viewState.timeColumnMarginRight + viewState.timeColumnMarginLeft
+                } else {
+                    bounds.left + viewState.timeColumnPadding - viewState.timeColumnMarginRightRtl + viewState.timeColumnMarginLeftRtl
+                }
+            val minimumX = canvas.clipBounds.left
+            val maximumX = canvas.clipBounds.right
+
+            x = x.coerceAtMost(maximumX.toFloat())
+            x = x.coerceAtLeast(minimumX.toFloat())
 
             canvas.withTranslation(x, y) {
                 label.draw(this)
             }
-
             if (showTimeColumnHourSeparators && hour > 0) {
                 val j = hour - 1
                 hourLines[j * 4] = x
@@ -108,8 +118,15 @@ internal class TimeColumnRenderer(
                 )
             textLayouts += textLayout
             timeLabelLayouts.put(hour, textLayout)
-        }
 
+            if (viewState.showQuarterHourSeparator) {
+                // 15 min
+
+
+            } else if (viewState.showHalfHourSeparator) {
+                //  timeLabelLayouts.put()
+            }
+        }
         val maxLineLength = textLayouts.maxOfOrNull { it.maxLineLength } ?: 0f
         val maxLineHeight = textLayouts.maxOfOrNull { it.height } ?: 0
 

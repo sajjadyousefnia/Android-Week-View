@@ -58,6 +58,11 @@ internal class ViewState {
     var timeColumnPadding: Int = 0
     var timeColumnHoursInterval: Int = 0
 
+    var timeColumnMarginLeft = 0
+    var timeColumnMarginRight = 0
+    var timeColumnMarginLeftRtl = 0
+    var timeColumnMarginRightRtl = 0
+
     var headerPadding: Float = 0f
 
     var showWeekNumber: Boolean = false
@@ -80,9 +85,14 @@ internal class ViewState {
     var effectiveMinHourHeight: Float = 0f
     var showCompleteDay: Boolean = false
 
+    var showHalfHours: Boolean = false
+    var showQuarterHours: Boolean = false
+
     var showNowLine: Boolean = false
     var showNowLineDot: Boolean = false
     var showHourSeparators: Boolean = false
+    var showQuarterHourSeparator: Boolean = false
+    var showHalfHourSeparator: Boolean = false
     var showDaySeparators: Boolean = false
     var showTimeColumnSeparator: Boolean = false
     var showTimeColumnHourSeparators: Boolean = false
@@ -100,12 +110,8 @@ internal class ViewState {
     var timeColumnWidth: Float = 0f
     var timeColumnTextHeight: Float = 0f
 
-    private val _timeColumnTextPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
+    var timeColumnTextPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
 
-    val timeColumnTextPaint: TextPaint
-        get() = _timeColumnTextPaint.apply {
-            textAlign = if (isLtr) Paint.Align.RIGHT else Paint.Align.LEFT
-        }
 
     val headerTextPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
         textAlign = Paint.Align.CENTER
@@ -309,6 +315,7 @@ internal class ViewState {
 
     val lastFullyVisibleHour: Int
         get() = (_firstVisibleHour + visibleHours).toInt()
+
 
     fun getXOriginForDate(date: Calendar): Float {
         return if (isLtr) (date.daysFromToday * dayWidth * -1f) else (date.daysFromToday * dayWidth)

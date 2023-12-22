@@ -24,6 +24,12 @@
         <attr name="headerBottomShadowRadius" format="dimension" />
 
         <!-- Time column -->
+        <attr name="timeColumnMarginLeft" format="dimension" />
+        <attr name="timeColumnMarginRight" format="dimension" />
+        <attr name="timeColumnMarginLeftRtL" format="dimension" />
+        <attr name="timeColumnMarginRightRtl" format="dimension" />
+
+
         <attr name="timeColumnTextColor" format="color" />
         <attr name="timeColumnBackgroundColor" format="color" />
         <attr name="timeColumnPadding" format="dimension" />
@@ -101,10 +107,21 @@
         <attr name="hourSeparatorColor" format="color" />
         <attr name="hourSeparatorStrokeWidth" format="dimension" />
 
+        <!-- Half-Hour Separators -->
+        <attr name="showHalfHours" format="boolean" />
+        <attr name="halfHourSeparatorColor" format="color" />
+        <attr name="halfHourSeparatorStrokeWidth" format="dimension" />
+
+        <!-- Quarter-Hour Separators -->
+        <attr name="showQuarterHours" format="boolean" />
+        <attr name="quarterHourSeparatorColor" format="color" />
+        <attr name="quarterHourSeparatorStrokeWidth" format="dimension" />
+
         <!-- Day separators -->
         <attr name="showDaySeparator" format="boolean" />
         <attr name="daySeparatorColor" format="color" />
         <attr name="daySeparatorStrokeWidth" format="dimension" />
+
 
         <!-- Scrolling -->
         <attr name="horizontalScrollingEnabled" format="boolean" />

@@ -397,6 +397,40 @@ class WeekView @JvmOverloads constructor(
             invalidate()
         }
 
+    @PublicApi
+    var timeColumnMarginLeft: Int
+        get() = viewState.timeColumnMarginLeft
+        set(value) {
+            viewState.timeColumnMarginLeft = value
+            invalidate()
+        }
+
+    @PublicApi
+    var timeColumnMarginRight: Int
+        get() = viewState.timeColumnMarginRight
+        set(value) {
+            viewState.timeColumnMarginRight = value
+            invalidate()
+        }
+
+    @PublicApi
+    var timeColumnMarginLeftRtl: Int
+        get() = viewState.timeColumnMarginLeftRtl
+        set(value) {
+            viewState.timeColumnMarginLeftRtl = value
+            invalidate()
+        }
+
+
+    @PublicApi
+    var timeColumnMarginRightRtl: Int
+        get() = viewState.timeColumnMarginRightRtl
+        set(value) {
+            viewState.timeColumnMarginRightRtl = value
+            invalidate()
+        }
+
+
     /**
      * Returns the text color of the labels in the time column.
      */

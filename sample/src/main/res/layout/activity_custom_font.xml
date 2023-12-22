@@ -42,7 +42,6 @@
         app:timeColumnSeparatorColor="@color/gray_300"
         app:timeColumnSeparatorStrokeWidth="1dp"
         app:timeColumnTextColor="@color/gray_600"
-        app:timeColumnTextSize="12sp"
         app:todayHeaderTextColor="@color/accent" />
 
 </LinearLayout>

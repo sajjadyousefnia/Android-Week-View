@@ -11,10 +11,15 @@ internal class TextFitter(
 
     fun fitAllDayEvent(eventChip: EventChip): StaticLayout {
         val textPaint = viewState.getTextPaint(eventChip.event)
-        return eventChip.getText(includeSubtitle = false).toTextLayout(textPaint, width = Int.MAX_VALUE)
+        return eventChip.getText(includeSubtitle = false)
+            .toTextLayout(textPaint, width = Int.MAX_VALUE)
     }
 
-    fun fitSingleEvent(eventChip: EventChip, availableWidth: Int, availableHeight: Int): StaticLayout {
+    fun fitSingleEvent(
+        eventChip: EventChip,
+        availableWidth: Int,
+        availableHeight: Int
+    ): StaticLayout {
         return eventChip.fitText(availableWidth, availableHeight)
     }
 
