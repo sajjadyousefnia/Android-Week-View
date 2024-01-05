@@ -63,7 +63,6 @@ internal class WeekViewGestureHandler(
             // the direction while already scrolling, we stay in the current scrolling direction.
             scrollDirection = determineScrollDirection(distanceX, distanceY)
         }
-
         when {
             scrollDirection.isHorizontal -> {
                 navigator.scrollHorizontallyBy(distance = distanceX)
@@ -73,7 +72,6 @@ internal class WeekViewGestureHandler(
                 navigator.scrollVerticallyBy(distance = distanceY)
             }
         }
-
         return true
     }
 

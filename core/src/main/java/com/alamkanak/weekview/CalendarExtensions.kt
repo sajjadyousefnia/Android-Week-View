@@ -220,10 +220,12 @@ internal fun List<Calendar>.validate(viewState: ViewState): List<Calendar> {
         mustAdjustStart -> {
             viewState.createDateRange(minDate!!)
         }
+
         mustAdjustEnd -> {
             val start = maxDate!!.minusDays(viewState.numberOfVisibleDays - 1)
             viewState.createDateRange(start)
         }
+
         else -> {
             this
         }
@@ -279,7 +281,8 @@ internal fun defaultDateFormatter(
     else -> SimpleDateFormat("EEEEE M/dd", Locale.getDefault()) // first character
 }
 
-internal fun defaultTimeFormatter(): SimpleDateFormat = SimpleDateFormat("hh a", Locale.getDefault())
+internal fun defaultTimeFormatter(): SimpleDateFormat =
+    SimpleDateFormat("hh a", Locale.getDefault())
 
 internal fun Calendar.format(): String {
     val sdf = SimpleDateFormat.getDateTimeInstance()

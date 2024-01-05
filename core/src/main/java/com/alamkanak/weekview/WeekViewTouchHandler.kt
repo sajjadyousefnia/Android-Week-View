@@ -35,8 +35,28 @@ internal class WeekViewTouchHandler(
     }
 
     fun handleLongClick(x: Float, y: Float): LongClickResult? {
-        val isInTimeColumn = x <= viewState.timeColumnWidth
-        val isInCalendarArea = x > viewState.timeColumnWidth && y > viewState.headerHeight
+
+        val isInTimeColumn =
+            when (viewState.isLtr) {
+                true -> {
+                    x <= viewState.timeColumnWidth
+                }
+
+                false -> {
+                    x >= (viewState.viewWidth - viewState.timeColumnWidth)
+                }
+            }
+
+        val isInCalendarArea =
+            when (viewState.isLtr) {
+                true -> {
+                    x > viewState.timeColumnWidth && y > viewState.headerHeight
+                }
+
+                false -> {
+                    x < (viewState.viewWidth - viewState.timeColumnWidth) && y > viewState.headerHeight
+                }
+            }
 
         if (isInTimeColumn) {
             return null

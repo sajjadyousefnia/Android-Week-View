@@ -95,7 +95,8 @@ internal class DragHandler(
 
     private fun scrollIfNecessary(e: MotionEvent) {
         val isAtTopOfCalendarArea = (e.y - viewState.calendarGridBounds.top) < SCROLL_THRESHOLD
-        val isAtBottomOfCalendarArea = (viewState.calendarGridBounds.bottom - e.y) < SCROLL_THRESHOLD
+        val isAtBottomOfCalendarArea =
+            (viewState.calendarGridBounds.bottom - e.y) < SCROLL_THRESHOLD
         val isAtStartOfCalendarArea = (e.x - viewState.calendarGridBounds.left) < SCROLL_THRESHOLD
         val isAtEndOfCalendarArea = (viewState.calendarGridBounds.right - e.x) < SCROLL_THRESHOLD
 
@@ -125,7 +126,8 @@ internal class DragHandler(
 
     private fun scrollDown() {
         executor.execute {
-            val maxY = viewState.dayHeight - (viewState.headerHeight + viewState.calendarGridBounds.height())
+            val maxY =
+                viewState.dayHeight - (viewState.headerHeight + viewState.calendarGridBounds.height())
             if (viewState.currentOrigin.y == maxY) {
                 executor.stop()
                 return@execute
@@ -142,20 +144,37 @@ internal class DragHandler(
     private fun scrollLeft() {
         executor.execute(delay = 600) {
             val draggedEvent = draggedEvent ?: return@execute
-            updateDraggedEvent(newStartTime = draggedEvent.startTime.minusDays(1))
+            if (viewState.isLtr) {
+                updateDraggedEvent(newStartTime = draggedEvent.startTime.minusDays(1))
+            } else {
+                updateDraggedEvent(newStartTime = draggedEvent.startTime.plusDays(1))
+            }
 
             val date = draggedEvent.startTime.atStartOfDay
-            navigator.scrollHorizontallyTo(date.minusDays(1))
+            if (viewState.isLtr) {
+                navigator.scrollHorizontallyTo(date.minusDays(1))
+            } else {
+                navigator.scrollHorizontallyTo(date.plusDays(1))
+            }
+
         }
     }
 
     private fun scrollRight() {
         executor.execute(delay = 600) {
             val draggedEvent = draggedEvent ?: return@execute
-            updateDraggedEvent(newStartTime = draggedEvent.startTime.plusDays(1))
+            if (viewState.isLtr) {
+                updateDraggedEvent(newStartTime = draggedEvent.startTime.plusDays(1))
+            } else {
+                updateDraggedEvent(newStartTime = draggedEvent.startTime.minusDays(1))
+            }
 
             val date = draggedEvent.startTime.atStartOfDay
-            navigator.scrollHorizontallyTo(date.plusDays(1))
+            if (viewState.isLtr) {
+                navigator.scrollHorizontallyTo(date.plusDays(1))
+            } else {
+                navigator.scrollHorizontallyTo(date.minusDays(1))
+            }
         }
     }
 

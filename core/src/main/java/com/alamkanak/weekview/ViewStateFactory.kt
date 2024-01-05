@@ -202,7 +202,7 @@ internal object ViewStateFactory {
         }
         viewState.apply {
             showHalfHours = a.getBoolean(R.styleable.WeekView_showHalfHours, false)
-            showHalfHours = a.getBoolean(R.styleable.WeekView_showQuarterHours, false)
+            showQuarterHours = a.getBoolean(R.styleable.WeekView_showQuarterHours, false)
         }
 
         viewState.apply {
